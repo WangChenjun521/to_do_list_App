@@ -1,5 +1,6 @@
 package com.fdu.todolist;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -7,13 +8,22 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+    private RecyclerView mRecyclerView;
+    private  SearchAdapter mSearchAdapter=new SearchAdapter();
+    private List<String> items=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,10 +35,35 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent=new Intent(view.getContext(), NewListActivity.class);
+                startActivity(intent);
             }
         });
+
+        for(int i=0;i<100;i++){
+            items.add("这个数字是"+String.valueOf(i));
+        }
+//        buttonSearch =(Button)findViewById(R.id.btnSearch);
+//        textSearch=(TextView)findViewById(R.id.textSearch);
+//        buttonSearch.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                outputList.clear();
+//                String str=textSearch.getText().toString();
+//                for (int i=0;i<items.size();i++){
+//                    int index =items.get(i).indexOf(str,0);
+//                    if(index!=-1){
+//                        outputList.add(items.get(i));
+//                    }
+//                }
+//                mSearchAdapter.notifyItems(outputList);
+//            }
+//        });
+
+        mRecyclerView=findViewById(R.id.rv);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mRecyclerView.getContext()));
+        mRecyclerView.setAdapter(mSearchAdapter);
+        mSearchAdapter.notifyItems(items);
     }
 
     @Override
