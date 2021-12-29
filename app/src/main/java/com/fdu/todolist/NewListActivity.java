@@ -42,7 +42,9 @@ public class NewListActivity extends AppCompatActivity {
                String appPath = getApplicationContext().getExternalFilesDir("").getAbsolutePath();
                System.out.println(appPath);
              //  ("",appPath);
-                Toast.makeText(btn_add_list.getContext(),appPath, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(btn_add_list.getContext(),appPath, Toast.LENGTH_SHORT).show();
+                finish();
+
             }
         });
 

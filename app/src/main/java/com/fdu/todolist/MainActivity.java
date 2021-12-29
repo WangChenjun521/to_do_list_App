@@ -159,12 +159,9 @@ public class MainActivity extends AppCompatActivity {
                 null,
                 sortOrder
         );
-       // List itemIds=new ArrayList<>();
         List<Note> notes=new ArrayList<>();
         while (cursor.moveToNext()){
-//            long itemId=cursor.getLong(
-//                    cursor.getColumnIndexOrThrow(FeedReaderContract.FeedEntry._ID));
-//            itemIds.add(itemId);
+
             Note note=new Note();
 
            int id = cursor.getInt(cursor.getColumnIndex(FeedReaderContract.FeedEntry._ID));
